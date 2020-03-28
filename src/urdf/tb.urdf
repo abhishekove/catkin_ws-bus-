@@ -1,0 +1,286 @@
+<?xml version="1.0"?>
+<robot name="myfirst">
+
+<material name="white">
+<color rgba="1 1 1 1"/>
+</material>
+
+<material name="black">
+<color rgba="0 0 0 1"/>
+</material>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="2 0.75 1"/>
+      </geometry>
+      <material name="white"/>
+    </visual>
+    <collision>
+    <geometry>
+      <box size="2 0.75 1"/>
+    </geometry>
+    </collision>
+    <inertial>
+    <mass value="10"/>
+    <inertia ixx="4.16666" ixy="0" ixz="0" iyy="3.8020" iyz="0" izz="1.3020"/>
+    </inertial>
+  </link>
+  <link name="wh">
+<visual>
+<material name="black"/>
+<origin rpy="1.57075 0 0" xyz="0 0 0"/>
+<geometry>
+<cylinder length="0.02" radius="0.1"/>
+</geometry>
+</visual>
+<collision>
+<origin rpy="1.57075 0 0" xyz="0 0 0"/>
+<geometry>
+<cylinder length="0.02" radius="0.1"/>
+</geometry>
+</collision>
+<inertial>
+  <mass value="1"/>
+  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+</inertial>
+  </link>
+  <joint name="left_front_wheel_joint" type="continuous">
+  <axis rpy="0 0 0" xyz="0 1 0"/>
+<parent link="base_link"/>
+<child link="wh"/>
+<origin xyz="1 0.38 -0.5"/>
+  </joint>
+
+
+     <gazebo reference="wh">
+         <mu1 value="200.0"/>
+         <mu2 value="100.0"/>
+         <kp value="10000000.0" />
+         <kd value="1.0" />
+         <material>Gazebo/Grey</material>
+      </gazebo>
+
+<transmission name="left_front_wheel_trans">
+<type>transmission_interface/SimpleTransmission</type>
+<actuator name="left_front_wheel_motor">
+<mechanicalReduction>1</mechanicalReduction>
+</actuator>
+<joint name="left_front_wheel_joint">
+<hardwareInterface>VelocityJointInterface</hardwareInterface>
+</joint>
+</transmission>
+
+
+  <link name="whr">
+<visual>
+<material name="black"/>
+<origin rpy="1.57075 0 0" xyz="0 0 0"/>
+<geometry>
+<cylinder length="0.02" radius="0.1"/>
+</geometry>
+</visual>
+<collision>
+<origin rpy="1.57075 0 0" xyz="0 0 0"/>
+<geometry>
+<cylinder length="0.02" radius="0.1"/>
+</geometry>
+</collision>
+<inertial>
+  <mass value="1"/>
+  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+</inertial>
+  </link>
+  <joint name="right_front_wheel_joint" type="continuous">
+  <axis rpy="0 0 0" xyz="0 1 0"/>
+<parent link="base_link"/>
+<child link="whr"/>
+<origin xyz="1 -0.38 -0.5"/>
+  </joint>
+
+
+  <gazebo reference="whr">
+      <mu1 value="200.0"/>
+      <mu2 value="100.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <material>Gazebo/Grey</material>
+   </gazebo>
+
+
+  <transmission name="right_front_wheel_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <actuator name="rightt_front_wheel_motor">
+  <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+  <joint name="right_front_wheel_joint">
+  <hardwareInterface>VelocityJointInterface</hardwareInterface>
+  </joint>
+  </transmission>
+
+
+  <link name="whbr">
+<visual>
+<material name="black"/>
+<origin rpy="1.57075 0 0" xyz="0 0 0"/>
+<geometry>
+<cylinder length="0.02" radius="0.1"/>
+</geometry>
+</visual>
+<collision>
+<origin rpy="1.57075 0 0" xyz="0 0 0"/>
+<geometry>
+<cylinder length="0.02" radius="0.1"/>
+</geometry>
+</collision>
+<inertial>
+  <mass value="1"/>
+  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+</inertial>
+  </link>
+  <joint name="right_back_wheel_joint" type="continuous">
+  <axis rpy="0 0 0" xyz="0 1 0"/>
+<parent link="base_link"/>
+<child link="whbr"/>
+<origin xyz="-1 -0.38 -0.5"/>
+  </joint>
+
+
+  <gazebo reference="whbr">
+      <mu1 value="200.0"/>
+      <mu2 value="100.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <material>Gazebo/Grey</material>
+   </gazebo>
+
+  <transmission name="right_back_wheel_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <actuator name="right_back_wheel_motor">
+  <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+  <joint name="right_back_wheel_joint">
+  <hardwareInterface>VelocityJointInterface</hardwareInterface>
+  </joint>
+  </transmission>
+
+
+
+  <link name="whbl">
+<visual>
+<material name="black"/>
+<origin rpy="1.57075 0 0" xyz="0 0 0"/>
+<geometry>
+<cylinder length="0.02" radius="0.1"/>
+</geometry>
+</visual>
+<collision>
+<origin rpy="1.57075 0 0" xyz="0 0 0"/>
+<geometry>
+<cylinder length="0.02" radius="0.1"/>
+</geometry>
+</collision>
+<inertial>
+  <mass value="1"/>
+  <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+</inertial>
+  </link>
+  <joint name="left_back_wheel_joint" type="continuous">
+  <axis rpy="0 0 0" xyz="0 1 0"/>
+<parent link="base_link"/>
+<child link="whbl"/>
+<origin xyz="-1 0.38 -0.5" rpy="0 0 0"/>
+  </joint>
+
+
+  <gazebo reference="whbl">
+      <mu1 value="200.0"/>
+      <mu2 value="100.0"/>
+      <kp value="10000000.0" />
+      <kd value="1.0" />
+      <material>Gazebo/Grey</material>
+   </gazebo>
+
+  <transmission name="left_back_wheel_trans">
+  <type>transmission_interface/SimpleTransmission</type>
+  <actuator name="left_back_wheel_motor">
+  <mechanicalReduction>1</mechanicalReduction>
+  </actuator>
+  <joint name="left_back_wheel_joint">
+  <hardwareInterface>VelocityJointInterface</hardwareInterface>
+  </joint>
+  </transmission>
+
+
+<link name="cam">
+<visual>
+  <origin xyz="0.9 0 0.54"/>
+<geometry>
+<cylinder length="0.1" radius="0.1"/>
+</geometry>
+</visual>
+<collision>
+  <origin xyz="0.9 0 0.54"/>
+<geometry>
+<cylinder length="0.1" radius="0.1"/>
+</geometry>
+</collision>
+<inertial>
+<mass value="1"/>
+<inertia ixx="0.00333" ixy="0" ixz="0" iyy="0.00333" iyz="0" izz="0.005" />
+</inertial>
+</link>
+
+<joint name="camjoi" type="fixed">
+<parent link="base_link"/>
+<child link="cam"/>
+</joint>
+
+<gazebo reference="cam">
+  <sensor type="camera" name="camera1">
+       <update_rate>30.0</update_rate>
+       <camera name="head">
+         <visualize>true</visualize>
+         <horizontal_fov>1.3962634</horizontal_fov>
+         <image>
+           <width>800</width>
+           <height>800</height>
+           <format>R8G8B8</format>
+         </image>
+         <clip>
+           <near>0.02</near>
+           <far>300</far>
+         </clip>
+         <noise>
+           <type>gaussian</type>
+           <!-- Noise is sampled independently per pixel on each frame.
+                That pixel's noise value is added to each of its color
+                channels, which at that point lie in the range [0,1]. -->
+           <mean>0.0</mean>
+           <stddev>0.007</stddev>
+         </noise>
+       </camera>
+       <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+         <alwaysOn>true</alwaysOn>
+         <updateRate>0.0</updateRate>
+         <cameraName>tb/camera1</cameraName>
+         <imageTopicName>image_raw</imageTopicName>
+         <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+         <frameName>cam</frameName>
+         <hackBaseline>0.07</hackBaseline>
+         <distortionK1>0.0</distortionK1>
+         <distortionK2>0.0</distortionK2>
+         <distortionK3>0.0</distortionK3>
+         <distortionT1>0.0</distortionT1>
+         <distortionT2>0.0</distortionT2>
+       </plugin>
+     </sensor>
+</gazebo>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/</robotNamespace>
+    </plugin>
+  </gazebo>
+
+</robot>

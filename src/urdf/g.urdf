@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot name="myfrst">
+  <link name="base_link">
+  <visual>
+    <geometry>
+      <mesh filename="package://beginner_tutorials/urdf/gear.dae" scale="0.0001 0.0001 0.0001"/>
+    </geometry>
+  </visual>
+  </link>
+</robot>
