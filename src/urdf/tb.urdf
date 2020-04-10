@@ -12,13 +12,13 @@
   <link name="base_link">
     <visual>
       <geometry>
-        <box size="2 0.75 1"/>
+        <box size="1 1 1"/>
       </geometry>
       <material name="white"/>
     </visual>
     <collision>
     <geometry>
-      <box size="2 0.75 1"/>
+      <box size="1 1 1"/>
     </geometry>
     </collision>
     <inertial>
@@ -49,7 +49,7 @@
   <axis rpy="0 0 0" xyz="0 1 0"/>
 <parent link="base_link"/>
 <child link="wh"/>
-<origin xyz="1 0.38 -0.5"/>
+<origin xyz="0.5 0.5 -0.5"/>
   </joint>
 
 
@@ -58,6 +58,7 @@
          <mu2 value="100.0"/>
          <kp value="10000000.0" />
          <kd value="1.0" />
+         <fdr1 value="0 1 0" />
          <material>Gazebo/Grey</material>
       </gazebo>
 
@@ -95,15 +96,16 @@
   <axis rpy="0 0 0" xyz="0 1 0"/>
 <parent link="base_link"/>
 <child link="whr"/>
-<origin xyz="1 -0.38 -0.5"/>
+<origin xyz="0.5 -0.5 -0.5"/>
   </joint>
 
 
   <gazebo reference="whr">
-      <mu1 value="200.0"/>
-      <mu2 value="100.0"/>
-      <kp value="10000000.0" />
-      <kd value="1.0" />
+    <mu1 value="200.0"/>
+    <mu2 value="100.0"/>
+    <kp value="10000000.0" />
+    <kd value="1.0" />
+    <fdr1 value="0 1 0" />
       <material>Gazebo/Grey</material>
    </gazebo>
 
@@ -142,15 +144,16 @@
   <axis rpy="0 0 0" xyz="0 1 0"/>
 <parent link="base_link"/>
 <child link="whbr"/>
-<origin xyz="-1 -0.38 -0.5"/>
+<origin xyz="-0.5 -0.5 -0.5"/>
   </joint>
 
 
   <gazebo reference="whbr">
-      <mu1 value="200.0"/>
-      <mu2 value="100.0"/>
-      <kp value="10000000.0" />
-      <kd value="1.0" />
+    <mu1 value="200.0"/>
+    <mu2 value="100.0"/>
+    <kp value="10000000.0" />
+    <kd value="1.0" />
+    <fdr1 value="0 1 0" />
       <material>Gazebo/Grey</material>
    </gazebo>
 
@@ -189,15 +192,16 @@
   <axis rpy="0 0 0" xyz="0 1 0"/>
 <parent link="base_link"/>
 <child link="whbl"/>
-<origin xyz="-1 0.38 -0.5" rpy="0 0 0"/>
+<origin xyz="-0.5 0.5 -0.5" rpy="0 0 0"/>
   </joint>
 
 
   <gazebo reference="whbl">
-      <mu1 value="200.0"/>
-      <mu2 value="100.0"/>
-      <kp value="10000000.0" />
-      <kd value="1.0" />
+    <mu1 value="200.0"/>
+    <mu2 value="100.0"/>
+    <kp value="10000000.0" />
+    <kd value="1.0" />
+    <fdr1 value="0 1 0" />
       <material>Gazebo/Grey</material>
    </gazebo>
 
@@ -215,13 +219,13 @@
 
   <link name="cam">
   <visual>
-    <origin xyz="0.9 0 0.54"/>
+    <origin xyz="0.4 0 0.54"/>
   <geometry>
   <cylinder length="0.1" radius="0.1"/>
   </geometry>
   </visual>
   <collision>
-    <origin xyz="0.9 0 0.54"/>
+    <origin xyz="0.4 0 0.54"/>
   <geometry>
   <cylinder length="0.1" radius="0.1"/>
   </geometry>
@@ -296,7 +300,7 @@
 
   <joint name="hokuyo_joint" type="fixed">
     <axis xyz="1 0 0" />
-    <origin xyz="1.1 0 0" rpy="0 0 0"/>
+    <origin xyz="0.6 0 0" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="hokuyo_link"/>
   </joint>
@@ -365,6 +369,9 @@
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/</robotNamespace>
+      <!-- <wheelSeperation>0.76</wheelSeperation>
+      <wheelDiameter>0.2</wheelDiameter> -->
+      <legacyModeNS>true</legacyModeNS>
     </plugin>
   </gazebo>
 
