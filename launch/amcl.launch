@@ -16,8 +16,8 @@
   <rosparam file="$(find beginner_tutorials)/global_costmap_params.yaml" command="load" />
   <rosparam file="$(find beginner_tutorials)/base_local_planner_params.yaml" command="load" />
 
-  <remap from="cmd_vel" to="/r2d2_diff_drive_controller/cmd_vel"/>
-  <remap from="odom" to="/r2d2_diff_drive_controller/odom"/>
+  <remap from="cmd_vel" to="/cmd_vel"/>
+  <remap from="odom" to="/odom"/>
   <remap from="scan" to="rrbot/laser/scan"/>
   <param name="move_base/DWAPlannerROS/yaw_goal_tolerance" value="1.0"/>
   <param name="move_base/DWAPlannerROS/xy_goal_tolerance" value="1.0"/>
