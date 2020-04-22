@@ -54,8 +54,8 @@
 
 
      <gazebo reference="wh">
-         <mu1 value="200.0"/>
-         <mu2 value="100.0"/>
+         <mu1 value="1000.0"/>
+         <mu2 value="1000.0"/>
          <kp value="10000000.0" />
          <kd value="1.0" />
          <fdr1 value="0 1 0" />
@@ -101,8 +101,8 @@
 
 
   <gazebo reference="whr">
-    <mu1 value="200.0"/>
-    <mu2 value="100.0"/>
+    <mu1 value="1000.0"/>
+    <mu2 value="1000.0"/>
     <kp value="10000000.0" />
     <kd value="1.0" />
     <fdr1 value="0 1 0" />
@@ -149,8 +149,8 @@
 
 
   <gazebo reference="whbr">
-    <mu1 value="200.0"/>
-    <mu2 value="100.0"/>
+    <mu1 value="1000.0"/>
+    <mu2 value="1000.0"/>
     <kp value="10000000.0" />
     <kd value="1.0" />
     <fdr1 value="0 1 0" />
@@ -197,8 +197,8 @@
 
 
   <gazebo reference="whbl">
-    <mu1 value="200.0"/>
-    <mu2 value="100.0"/>
+    <mu1 value="1000.0"/>
+    <mu2 value="1000.0"/>
     <kp value="10000000.0" />
     <kd value="1.0" />
     <fdr1 value="0 1 0" />
@@ -366,13 +366,87 @@
   </sensor>
 </gazebo>
 
-  <gazebo>
+
+
+
+
+<link name="imu_link">
+<visual>
+  <origin xyz="0 0 0.54"/>
+<geometry>
+<cylinder length="0.1" radius="0.1"/>
+</geometry>
+</visual>
+<collision>
+  <origin xyz="0 0 0.54"/>
+<geometry>
+<cylinder length="0.1" radius="0.1"/>
+</geometry>
+</collision>
+<inertial>
+<mass value="1"/>
+<inertia ixx="0.00333" ixy="0" ixz="0" iyy="0.00333" iyz="0" izz="0.005" />
+</inertial>
+</link>
+
+<joint name="imujoint" type="fixed">
+<parent link="base_link"/>
+<child link="imu_link"/>
+</joint>
+
+
+
+
+
+<gazebo reference="imu_link">
+  <gravity>true</gravity>
+  <sensor name="imu_sensor" type="imu">
+    <always_on>true</always_on>
+    <update_rate>100</update_rate>
+    <visualize>true</visualize>
+    <topic>__default_topic__</topic>
+    <plugin filename="libgazebo_ros_imu_sensor.so" name="imu_plugin">
+      <topicName>imu</topicName>
+      <bodyName>imu_link</bodyName>
+      <updateRateHZ>10.0</updateRateHZ>
+      <gaussianNoise>0.0</gaussianNoise>
+      <xyzOffset>0 0 0</xyzOffset>
+      <rpyOffset>0 0 0</rpyOffset>
+      <frameName>imu_link</frameName>
+    </plugin>
+    <pose>0 0 0 0 0 0</pose>
+  </sensor>
+</gazebo>
+
+
+<gazebo>
+  <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
+    <updateRate>100.0</updateRate>
+    <robotNamespace>/</robotNamespace>
+    <leftFrontJoint>left_front_wheel_joint</leftFrontJoint>
+    <rightFrontJoint>right_front_wheel_joint</rightFrontJoint>
+    <leftRearJoint>left_back_wheel_joint</leftRearJoint>
+    <rightRearJoint>right_back_wheel_joint</rightRearJoint>
+    <wheelSeparation>1</wheelSeparation>
+    <wheelDiameter>0.2</wheelDiameter>
+    <robotBaseFrame>base_link</robotBaseFrame>
+    <torque>130</torque>
+    <commandTopic>cmd_vel</commandTopic>
+    <odometryTopic>odom</odometryTopic>
+    <odometryFrame>odom</odometryFrame>
+    <broadcastTF>1</broadcastTF>
+  </plugin>
+</gazebo>
+
+
+
+
+  <!-- <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/</robotNamespace>
-      <!-- <wheelSeperation>0.76</wheelSeperation>
-      <wheelDiameter>0.2</wheelDiameter> -->
+
       <legacyModeNS>true</legacyModeNS>
     </plugin>
-  </gazebo>
+  </gazebo> -->
 
 </robot>
